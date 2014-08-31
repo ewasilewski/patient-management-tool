@@ -8,6 +8,9 @@
     <artifactId>SpringDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>Patient Management Tool</name>
+    <packaging>war</packaging>
+
     <!-- Shared version number properties -->
     <properties>
         <org.springframework.version>4.0.6.RELEASE</org.springframework.version>
