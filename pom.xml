@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>groupId</groupId>
-    <artifactId>SpringDemo</artifactId>
+    <artifactId>PatientManagementTool</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>Patient Management Tool</name>
