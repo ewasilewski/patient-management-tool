@@ -16,5 +16,6 @@
     </beans:bean>
 
     <beans:import resource="controllers.xml" />
+    <beans:import resource="spring-configuration.xml" />
 
 </beans:beans>
