@@ -11,20 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RootController {
 
-    private CustomerDao customerDao;
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getRoot() {
         return "index";
     }
-
-    @Autowired
-    public void setCustomerDao(CustomerDao customerDao) {
-        this.customerDao = customerDao;
-    }
-
-    public CustomerDao getCustomerDao() {
-        return customerDao;
-    }
-
 }
