@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 public class CustomerController {
 
@@ -17,7 +19,9 @@ public class CustomerController {
      * Shows all customers.
      */
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
-    public String indexCustomer() {
+    public String indexCustomer(ModelMap modelMap) {
+        List<Customer> customerList = customerDao.readAll();
+        modelMap.addAttribute("customerList", customerList);
         return "customers/index";
     }
 
@@ -34,15 +38,17 @@ public class CustomerController {
      */
     @RequestMapping(value = "/customers", method = RequestMethod.POST)
     public String createCustomer(Customer customer) {
-        customerDao.createCustomer(customer);
-        return "customers/show";
+        customerDao.create(customer);
+        return "redirect:/customers";
     }
 
     /**
      * Shows filled customer form.
      */
     @RequestMapping(value = "/customers/{id}/edit", method = RequestMethod.GET)
-    public String editCustomer(@PathVariable int id) {
+    public String editCustomer(@PathVariable int id, ModelMap modelMap) {
+        Customer customer = customerDao.read(id);
+        modelMap.addAttribute("customer", customer);
         return "customers/edit";
     }
 
@@ -51,7 +57,7 @@ public class CustomerController {
      */
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
     public String showCustomer(@PathVariable int id, ModelMap modelMap) {
-        Customer customer = customerDao.readCustomer(id);
+        Customer customer = customerDao.read(id);
         modelMap.addAttribute("customer", customer);
         return "customers/show";
     }
@@ -60,24 +66,28 @@ public class CustomerController {
      * Updates a customer.
      */
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.PUT)
-    public String updateCustomer(@PathVariable int id, @ModelAttribute Customer customer) {
-        return "customers/show";
+    public String updateCustomer(@ModelAttribute Customer customer) {
+        customerDao.update(customer);
+        return "redirect:/customers/" + customer.getId();
     }
 
     /**
      * Deletes a customer.
      */
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
-    public String deleteCustomer(@PathVariable int id) {
-        return "customers/index";
+        public String deleteCustomer(@PathVariable int id) {
+            customerDao.delete(id);
+            return "redirect:/customers";
     }
 
     @Autowired
     public void setCustomerDao(CustomerDao customerDao) {
+
         this.customerDao = customerDao;
     }
 
     public CustomerDao getCustomerDao() {
+
         return customerDao;
     }
 

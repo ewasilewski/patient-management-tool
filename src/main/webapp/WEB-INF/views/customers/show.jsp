@@ -7,6 +7,7 @@
     <title></title>
 </head>
 <body>
+<a href="/customers">Back</a>
 <table border="1">
     <tr>
         <th>ID: ${customer.id}</th>

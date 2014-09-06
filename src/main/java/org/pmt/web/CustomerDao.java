@@ -7,11 +7,11 @@ import java.util.List;
  */
 public interface CustomerDao {
 
-    public void createCustomer(Customer customer);
-    public Customer readCustomer(int id);
+    public void create(Customer customer);
+    public Customer read(int id);
     public List<Customer> readAll();
-    public void updateCustomer(Customer customer);
-    public void deleteCustomer(int id);
+    public void update(Customer customer);
+    public void delete(int id);
     public void deleteAll();
 
 }
